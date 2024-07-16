@@ -2,7 +2,6 @@
 
 #ifndef TEXTBAR_H
 #define TEXTBAR_H
-#include <QWidget>
 #include <QLineEdit>
 
 class TextBar : public QWidget {

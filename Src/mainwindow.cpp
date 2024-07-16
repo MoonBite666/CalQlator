@@ -7,8 +7,18 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent) {
     setWindowTitle("CalQlator");
-    setFixedSize(500, 800);
-    setCentralWidget(new TextBar(this));
+    resize(500, 800);
+    auto *centralWidget = new QWidget(this);
+    auto *layout = new QVBoxLayout(centralWidget);
+
+    auto *textBar = new TextBar(this);
+    layout->addWidget(textBar);
+
+    layout->setContentsMargins(50,50,50,50);
+    centralWidget->setLayout(layout);
+    setCentralWidget(centralWidget);
+
+
 }
 
 MainWindow::~MainWindow() = default;
