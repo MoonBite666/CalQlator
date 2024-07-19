@@ -12,7 +12,7 @@ public:
     QLineEdit *lineEdit;
 
 private slots:
-    void textChanged(const QString &text);
+    static void textChanged(const QString &text);
 };
 
 

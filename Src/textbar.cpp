@@ -8,7 +8,7 @@ TextBar::TextBar(QWidget *parent) : QWidget(parent) {
     lineEdit->setAlignment(Qt::AlignRight);
     lineEdit->setFixedHeight(50);
     lineEdit->setStyleSheet("font-size: 20px");
-    lineEdit->resize(600, 50);
+    lineEdit->resize(440, 50);
     connect(lineEdit, &QLineEdit::textChanged, this, &TextBar::textChanged);
 }
 
