@@ -21,8 +21,7 @@ add_executable(CalQlator main.cpp
         Src/mainwindow.cpp
         Src/textbar.cpp
         Inc/textbar.h
-        Src/resultbar.cpp
-        Inc/resultbar.h)
+)
 target_link_libraries(CalQlator
         Qt::Core
         Qt::Gui

@@ -1,8 +1,6 @@
 
 
 #include "mainwindow.h"
-
-#include "resultbar.h"
 #include "textbar.h"
 
 
@@ -13,20 +11,17 @@ MainWindow::MainWindow(QWidget *parent)
     auto *centralWidget = new QWidget(this);
     auto *mainLayout = new QVBoxLayout(centralWidget);
 
-    auto *textContainer = new QWidget(centralWidget);
-    textContainer->setFixedHeight(200);
-    auto *textLayout = new QVBoxLayout(textContainer);
-    auto *textBar = new TextBar(textContainer);
-    auto *resultBar = new ResultBar(textContainer);
 
-
-    // textLayout->setSpacing(5);
-    textLayout->addWidget(textBar);
-    textLayout->addWidget(resultBar);
+    auto *textBar = new TextBar(this);
+    textBar->setFixedHeight(200);
 
 
     mainLayout->setContentsMargins(30,30,30,30);
-    mainLayout->addWidget(textContainer);
+    mainLayout->addWidget(textBar);
+
+    auto* spacerItem = new QSpacerItem
+        (20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    mainLayout->addSpacerItem(spacerItem);
 
     centralWidget->setLayout(mainLayout);
     setCentralWidget(centralWidget);
