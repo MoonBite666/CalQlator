@@ -1,8 +1,9 @@
 
 #include "textbar.h"
-#include <QVBoxLayout>
 
-TextBar::TextBar(QWidget *parent) : QWidget(parent) {
+
+TextBar::TextBar(QWidget *parent) : QFrame(parent) {
+    this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     lineEdit = new QLineEdit(this);
     lineEdit->setPlaceholderText("Enter your expression here");
     lineEdit->setAlignment(Qt::AlignRight);
@@ -20,6 +21,7 @@ TextBar::TextBar(QWidget *parent) : QWidget(parent) {
     layout->addWidget(lineEdit);
     layout->addWidget(resultLabel);
     layout->setSpacing(5);
+    layout->setContentsMargins(0,0,0,5);
 
     this->setLayout(layout);
 }

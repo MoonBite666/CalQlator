@@ -21,6 +21,10 @@ add_executable(CalQlator main.cpp
         Src/mainwindow.cpp
         Src/textbar.cpp
         Inc/textbar.h
+        Src/numpad.cpp
+        Inc/numpad.h
+        Src/squarebutton.cpp
+        Inc/squarebutton.h
 )
 target_link_libraries(CalQlator
         Qt::Core
