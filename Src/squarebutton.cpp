@@ -9,8 +9,3 @@ void SquareButton::mousePressEvent(QMouseEvent *event) {
     emit buttonClicked(this->text());
 }
 
-
-// void SquareButton::resizeEvent(QResizeEvent *event) {
-//     int side = qMin(event->size().width(), event->size().height());
-//     setFixedSize(side, side);
-// }

@@ -19,6 +19,7 @@ public:
     static void buttonClicked(const QString &text);
 private:
     QList<SquareButton *> buttons;
+    SquareButton* createButton(const QString &text);
 
 };
 

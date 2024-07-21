@@ -10,28 +10,29 @@ Numpad::Numpad(QWidget *parent) : QFrame(parent) {
 
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++) {
-            auto *button = new SquareButton(QString::number(i*3 + j + 1), this);
-            buttons.append(button);
-            layout->addWidget(button, i, j);
-            connect(button, &SquareButton::buttonClicked, this, &Numpad::buttonClicked);
+            layout->addWidget(createButton(QString::number(i*3 + j + 1)), i, j);
         }
     }
 
-    auto *button0 = new SquareButton("0", this);
-    buttons.append(button0);
-    layout->addWidget(button0, 3, 0, 1, 2);
-    connect(button0, &SquareButton::buttonClicked, this, &Numpad::buttonClicked);
-
-    auto *buttonDot = new SquareButton(".", this);
-    buttons.append(buttonDot);
-    layout->addWidget(buttonDot, 3, 2);
-    connect(buttonDot, &SquareButton::buttonClicked, this, &Numpad::buttonClicked);
+    layout->addWidget(createButton("0"), 3, 0, 1, 2);
+    layout->addWidget(createButton("."), 3, 2);
+    layout->addWidget(createButton("+"), 0, 3);
+    layout->addWidget(createButton("-"), 1, 3);
+    layout->addWidget(createButton("×"), 2, 3);
+    layout->addWidget(createButton("÷"), 3, 3);
 
     layout->setContentsMargins(0, 0, 0, 0);
 
 }
 
 Numpad::~Numpad() = default;
+
+SquareButton* Numpad::createButton(const QString &text) {
+    auto *button = new SquareButton(text);
+    buttons.append(button);
+    connect(button, &SquareButton::buttonClicked, this, &Numpad::buttonClicked);
+    return button;
+}
 
 void Numpad::buttonClicked(const QString &text) {
     qDebug() << text;
