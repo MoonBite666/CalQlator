@@ -3,6 +3,7 @@
 #include "mainwindow.h"
 #include "textbar.h"
 #include "numpad.h"
+#include "calculate.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent) {
@@ -22,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     centralWidget->setLayout(mainLayout);
     setCentralWidget(centralWidget);
+    QDebug(QtMsgType::QtInfoMsg) << solve("2+3+5");
 
 
 }
