@@ -15,7 +15,7 @@ int priority(QChar op) {
 }
 
 QString solve(const QString &input) {
-    QStack<QString> NPR;
+    QQueue<QString> NPR;
     QStack<QChar> operators;
     QString crtNumber;
 
@@ -26,7 +26,7 @@ QString solve(const QString &input) {
         else // end of a number
             {
             if(!crtNumber.isEmpty()) {
-                NPR.push(crtNumber);
+                NPR.append(crtNumber);
                 crtNumber.clear();
             }
             // begin of an operator
@@ -38,13 +38,14 @@ QString solve(const QString &input) {
                 case u'÷':
                 case u'+':
                 case u'-':
-                    if(priority(operators.top()) < priority(ch) ) {
-                        NPR.push(operators.pop());
+                    while(!operators.isEmpty() && priority(operators.top()) >= priority(ch)) {
+                        NPR.append(operators.pop());
                     }
+                    operators.push(ch);
                     break;
                 case u')':
                     do {
-                        NPR.push(operators.pop());
+                        NPR.append(operators.pop());
                     }while(operators.top().unicode() != u'(');
                     operators.pop();
                     break;
@@ -58,12 +59,12 @@ QString solve(const QString &input) {
         NPR.append(crtNumber);
     }
     while(!operators.isEmpty()) {
-        NPR.push(operators.pop());
+        NPR.append(operators.pop());
     }
 
     QStack<QString> result;
     while(!NPR.isEmpty()) {
-        QString crt = NPR.pop();
+        QString crt = NPR.dequeue();
         if(crt[0].isDigit()) {
             result.push(crt);
         }
@@ -91,8 +92,7 @@ QString solve(const QString &input) {
             result.push(QString::number(c));
         }
     }
-    QDebug deb = qDebug();
-    deb << result.top();
+    return result.pop();
 
 
 

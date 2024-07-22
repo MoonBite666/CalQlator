@@ -4,6 +4,7 @@
 
 #include <QString>
 #include <QStack>
+#include <QQueue>
 #include <QChar>
 #include <QDebug>
 
