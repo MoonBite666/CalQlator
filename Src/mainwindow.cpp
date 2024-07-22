@@ -24,7 +24,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     centralWidget->setLayout(mainLayout);
     setCentralWidget(centralWidget);
-    QDebug(QtMsgType::QtInfoMsg) << solve("(2+3)×5");
 
 
 }

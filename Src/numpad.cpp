@@ -34,6 +34,5 @@ SquareButton* Numpad::createButton(const QString &text) {
 }
 
 void Numpad::buttonClicked(const QString &text) {
-    qDebug() << text;
     emit addText(text);
 }

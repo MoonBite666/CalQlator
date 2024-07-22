@@ -6,7 +6,6 @@
 #include <QStack>
 #include <QQueue>
 #include <QChar>
-#include <QDebug>
 
 QString solve(const QString &input);
 

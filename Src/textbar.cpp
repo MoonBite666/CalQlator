@@ -37,6 +37,5 @@ void TextBar::receiveText(const QString &text) const {
 
 
 void TextBar::changeResult(const QString &text) const {
-    qDebug() << "result:" << text;
     resultLabel->setText(solve(text));
 }
