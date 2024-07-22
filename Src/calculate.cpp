@@ -8,6 +8,8 @@ int priority(QChar op) {
             return 1;
         case u'×':
         case u'÷':
+        case u'*':
+        case u'/':
             return 2;
         default:
             return 0;
@@ -16,7 +18,7 @@ int priority(QChar op) {
 
 bool containOperator(const QString& text) {
     const auto op = text.unicode()->unicode();
-    return (op == u'+' || op == u'-' || op == u'×' || op == u'÷');
+    return (op == u'+' || op == u'-' || op == u'×' || op == u'÷' || op == u'*' || op == u'/');
 }
 
 QString solve(const QString &input) {
@@ -58,8 +60,8 @@ QString solve(const QString &input) {
                     if (leftBracket) {
                         do {
                             NPR.append(operators.pop());
-                        } while (operators.top().unicode() != u'(');
-                        operators.pop();
+                        } while (!operators.isEmpty() && operators.top().unicode() != u'(');
+                        if(!operators.isEmpty()) operators.pop();
                         leftBracket = false;
                     }
                     break;
@@ -81,7 +83,9 @@ QString solve(const QString &input) {
         if(QString crt = NPR.dequeue(); crt[0].isDigit()) {
             result.push(crt);
         }
-        else if(!containOperator(crt)){}
+        else if(!containOperator(crt)) {
+            return "NaN";
+        }
         else if(result.size() >= 2){
             const double b = result.pop().toDouble();
             const double a = result.pop().toDouble();

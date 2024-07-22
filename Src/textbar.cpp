@@ -6,7 +6,7 @@
 TextBar::TextBar(QWidget *parent) : QFrame(parent) {
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     lineEdit = new QLineEdit(this);
-    lineEdit->setPlaceholderText("Enter your expression here");
+    lineEdit->setPlaceholderText("Enter your expression...");
     lineEdit->setAlignment(Qt::AlignRight);
     lineEdit->setStyleSheet("font-size: 30px");
     lineEdit->resize(440, 40);
@@ -30,6 +30,11 @@ TextBar::TextBar(QWidget *parent) : QFrame(parent) {
 
 
 TextBar::~TextBar() = default;
+
+void TextBar::receiveText(const QString &text) const {
+    lineEdit->insert(text);
+}
+
 
 void TextBar::changeResult(const QString &text) const {
     qDebug() << "result:" << text;

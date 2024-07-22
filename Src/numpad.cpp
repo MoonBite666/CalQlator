@@ -1,7 +1,6 @@
 
 #include "numpad.h"
 
-
 Numpad::Numpad(QWidget *parent) : QFrame(parent) {
     // this->setFixedHeight(250);
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -36,4 +35,5 @@ SquareButton* Numpad::createButton(const QString &text) {
 
 void Numpad::buttonClicked(const QString &text) {
     qDebug() << text;
+    emit addText(text);
 }

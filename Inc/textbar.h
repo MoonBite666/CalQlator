@@ -13,9 +13,14 @@ public:
     ~TextBar() override;
     QLineEdit *lineEdit;
     QLabel *resultLabel;
+    public slots:
+    void receiveText(const QString &text) const;
+
 
 private slots:
     void changeResult(const QString &text) const;
+
+
 };
 
 

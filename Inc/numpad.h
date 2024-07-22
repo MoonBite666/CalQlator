@@ -14,9 +14,11 @@ class Numpad : public QFrame {
 public:
     explicit Numpad(QWidget *parent = nullptr);
     ~Numpad() override;
+    signals:
+    void addText(const QString &text);
 
     private slots:
-    static void buttonClicked(const QString &text);
+    void buttonClicked(const QString &text);
 private:
     QList<SquareButton *> buttons;
     SquareButton* createButton(const QString &text);
