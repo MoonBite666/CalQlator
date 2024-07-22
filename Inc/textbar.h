@@ -15,7 +15,7 @@ public:
     QLabel *resultLabel;
 
 private slots:
-    static void textChanged(const QString &text);
+    void changeResult(const QString &text) const;
 };
 
 

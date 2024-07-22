@@ -14,10 +14,16 @@ int priority(QChar op) {
     }
 }
 
+bool containOperator(const QString& text) {
+    const auto op = text.unicode()->unicode();
+    return (op == u'+' || op == u'-' || op == u'×' || op == u'÷');
+}
+
 QString solve(const QString &input) {
     QQueue<QString> NPR;
     QStack<QChar> operators;
     QString crtNumber;
+    bool leftBracket = false;
 
     for(QChar ch : input) {
         if(ch.isDigit() || ch == '.') {
@@ -32,10 +38,14 @@ QString solve(const QString &input) {
             // begin of an operator
             switch (ch.unicode()) {
                 case u'(':
+                case u'（':
+                    leftBracket = true;
                     operators.push(ch);
                     break;
                 case u'×':
+                case u'*':
                 case u'÷':
+                case u'/':
                 case u'+':
                 case u'-':
                     while(!operators.isEmpty() && priority(operators.top()) >= priority(ch)) {
@@ -44,10 +54,14 @@ QString solve(const QString &input) {
                     operators.push(ch);
                     break;
                 case u')':
-                    do {
-                        NPR.append(operators.pop());
-                    }while(operators.top().unicode() != u'(');
-                    operators.pop();
+                case u'）':
+                    if (leftBracket) {
+                        do {
+                            NPR.append(operators.pop());
+                        } while (operators.top().unicode() != u'(');
+                        operators.pop();
+                        leftBracket = false;
+                    }
                     break;
                 default:
                     break;
@@ -64,13 +78,13 @@ QString solve(const QString &input) {
 
     QStack<QString> result;
     while(!NPR.isEmpty()) {
-        QString crt = NPR.dequeue();
-        if(crt[0].isDigit()) {
+        if(QString crt = NPR.dequeue(); crt[0].isDigit()) {
             result.push(crt);
         }
-        else {
-            double b = result.pop().toDouble();
-            double a = result.pop().toDouble();
+        else if(!containOperator(crt)){}
+        else if(result.size() >= 2){
+            const double b = result.pop().toDouble();
+            const double a = result.pop().toDouble();
             double c;
             switch(crt[0].unicode()) {
                 case u'+':
@@ -80,21 +94,23 @@ QString solve(const QString &input) {
                     c = a - b;
                     break;
                 case u'×':
+                case u'*':
                     c = a * b;
                     break;
                 case u'÷':
+                case u'/':
                     c = a / b;
                     break;
                 default:
-                    c = 0;
-                    break;
+                    continue;
             }
             result.push(QString::number(c));
         }
+        else {
+            break;
+        }
     }
-    return result.pop();
 
-
-
+    return result.isEmpty() ? "0" : result.top();
 
 }
