@@ -12,13 +12,18 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     message(STATUS "Configuring for Linux")
     set(CMAKE_PREFIX_PATH "/opt/Qt/6.7.2/gcc_64/lib/cmake")
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Android")
+    message(STATUS "Configuring for Android")
+    set(CMAKE_PREFIX_PATH "C:/Qt/6.7.2/android_arm64_v8a/lib/cmake")
 endif()
 
 find_package(Qt6 COMPONENTS
         Core
         Gui
         Widgets
-        REQUIRED)
+        REQUIRED
+        PATHS "C:/Qt/6.7.2/android_arm64_v8a/lib/cmake/Qt6" NO_DEFAULT_PATH
+)
 
 include_directories(Inc)
 
