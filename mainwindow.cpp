@@ -1,9 +1,9 @@
 
 
 #include "mainwindow.h"
-#include "textbar.h"
-#include "numpad.h"
-#include "calculate.h"
+#include "Inc/textbar.h"
+#include "Inc/numpad.h"
+#include "Inc/calculate.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent) {
