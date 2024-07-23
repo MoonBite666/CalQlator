@@ -6,7 +6,13 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set(CMAKE_PREFIX_PATH "C:/Qt/6.7.2/mingw_64/lib/cmake")
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    message(STATUS "Configuring for Windows")
+    set(CMAKE_PREFIX_PATH "C:/Qt/6.7.2/mingw_64/lib/cmake")
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    message(STATUS "Configuring for Linux")
+    set(CMAKE_PREFIX_PATH "/opt/Qt/6.7.2/gcc_64/lib/cmake")
+endif()
 
 find_package(Qt6 COMPONENTS
         Core
