@@ -7,7 +7,6 @@
 #include <QGridLayout>
 #include <QList>
 
-#include "squarebutton.h"
 
 class Numpad : public QFrame {
     Q_OBJECT
