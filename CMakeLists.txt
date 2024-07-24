@@ -18,7 +18,7 @@ set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
-        mainwindow.ui
+        Form/mainwindow.ui
 )
 include_directories(Inc)
 
@@ -26,12 +26,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(CalQlator
             MANUAL_FINALIZATION
             ${PROJECT_SOURCES}
-            Src/textbar.cpp
-            Inc/textbar.h
-            Src/numpad.cpp
-            Inc/numpad.h
-            Src/squarebutton.cpp
-            Inc/squarebutton.h
             Src/calculate.cpp
             Inc/calculate.h
     )

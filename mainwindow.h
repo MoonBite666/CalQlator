@@ -15,8 +15,12 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+
     ~MainWindow();
 
+private slots:
+    void onButtonClicked();
+    void changeResult(const QString &text) const;
 private:
     Ui::MainWindow *ui;
 };
